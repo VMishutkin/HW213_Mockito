@@ -3,29 +3,21 @@ package mish.vlad.hw_streams;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final List<Employee> employees;
 
+
     public EmployeeServiceImpl() {
 
         this.employees = new ArrayList<Employee>();
     }
-
-    public List<Employee> printEmployees(Integer departmentId) {
-        if (departmentId != null) {
-            return employees.stream()
-                    .filter(e -> e.getDepartment() == departmentId)
-                    .collect(Collectors.toList());
-        }else {
-            return employees;
-        }
-
+    @Override
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
     public Employee addEmployee(String firstName, String lastName, int salary, int department) {
@@ -55,19 +47,5 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .orElseThrow(EmployeeNotFoundException::new);
     }
 
-    @Override
-    public Employee findMaxSalaryByDepartment(Integer departmentId) {
-        return employees.stream()
-                .filter(e -> e.getDepartment() == departmentId)
-                .max(Comparator.comparingInt(employee -> employee.getSalary()))
-                .get();
-    }
 
-    @Override
-    public Employee findMinSalaryByDepartment(Integer departmentId) {
-        return employees.stream()
-                .filter(e -> e.getDepartment() == departmentId)
-                .min(Comparator.comparingInt(employee -> employee.getSalary()))
-                .get();
-    }
 }

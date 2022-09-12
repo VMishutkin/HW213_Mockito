@@ -13,10 +13,7 @@ import java.util.List;
 public class EmployeeController {
     private final EmployeeService employeeService;
 
-    @GetMapping
-    public String greetings() {
-        return "Добро пожаловать в самый убогий справочник сотрудников";
-    }
+
 
     public EmployeeController(EmployeeService employeeService) {
 
@@ -45,22 +42,7 @@ public class EmployeeController {
 
 
 
-    @GetMapping("/max-salary")
-    public Employee findMaxSalalryByDepartment(@RequestParam("departmentId") Integer departmentId) {
 
-        return employeeService.findMaxSalaryByDepartment(departmentId);
-    }
-    @GetMapping("/min-salary")
-    public Employee findMinSalalryByDepartment(@RequestParam("departmentId") Integer departmentId) {
-
-        return employeeService.findMinSalaryByDepartment(departmentId);
-    }
-    @GetMapping("/all")
-    public List<Employee> printEmployees(
-            @RequestParam(value = "departmentId", required = false) Integer departmentId) {
-
-        return employeeService.printEmployees(departmentId);
-    }
 
 
 }
