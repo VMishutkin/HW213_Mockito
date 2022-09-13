@@ -14,7 +14,6 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
 
-
     public EmployeeController(EmployeeService employeeService) {
 
         this.employeeService = employeeService;
@@ -25,7 +24,8 @@ public class EmployeeController {
                                 @RequestParam("lastName") String lastName,
                                 @RequestParam("salary") int salary,
                                 @RequestParam("departmentId") int departmentId) {
-        return employeeService.addEmployee(firstName, lastName,salary, departmentId);
+        return employeeService.addEmployee(firstName, lastName, salary, departmentId);
+
     }
 
     @GetMapping("/remove")
@@ -39,10 +39,6 @@ public class EmployeeController {
         return employeeService.findEmployee(firstName, lastName);
 
     }
-
-
-
-
 
 
 }

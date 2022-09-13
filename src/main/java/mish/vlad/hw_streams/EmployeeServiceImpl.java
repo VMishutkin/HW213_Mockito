@@ -15,12 +15,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         this.employees = new ArrayList<Employee>();
     }
+
     @Override
     public List<Employee> getEmployees() {
         return employees;
     }
 
     public Employee addEmployee(String firstName, String lastName, int salary, int department) {
+
+        firstName = InputDataService.validateName(firstName);
+        lastName = InputDataService.validateSurname(lastName);
+
         if (employees.contains(new Employee(firstName, lastName, salary, department))) {
             throw new EmployeeAlreadyAddedException();
         }
@@ -31,8 +36,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public Employee removeEmployee(String firstName, String lastName) {
+        final String name = InputDataService.validateName(firstName);
+        final String surname = InputDataService.validateSurname(lastName);
+
+
         Employee removedEmployee = employees.stream()
-                .filter(e -> e.getFirstname().equals(firstName) && e.getLastname().equals(lastName))
+                .filter(e -> e.getFirstname().equals(name) && e.getLastname().equals(surname))
                 .findFirst()
                 .orElseThrow(EmployeeNotFoundException::new);
         employees.remove(removedEmployee);
@@ -41,8 +50,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     public Employee findEmployee(String firstName, String lastName) {
+        final String name = InputDataService.validateName(firstName);
+        final String surname = InputDataService.validateSurname(lastName);
         return employees.stream()
-                .filter(e -> e.getFirstname().equals(firstName) && e.getLastname().equals(lastName))
+                .filter(e -> e.getFirstname().equals(name) && e.getLastname().equals(surname))
                 .findFirst()
                 .orElseThrow(EmployeeNotFoundException::new);
     }
