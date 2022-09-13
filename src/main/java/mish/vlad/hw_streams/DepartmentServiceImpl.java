@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class DepartmentServiceImpl implements DepartmentService{
+public class DepartmentServiceImpl implements DepartmentService {
     private EmployeeService employeeService;
 
     public DepartmentServiceImpl(EmployeeService employeeService) {
@@ -17,10 +17,10 @@ public class DepartmentServiceImpl implements DepartmentService{
 
 
     @Override
-    public Employee findMaxSalaryByDepartment(Integer departmentId) {
+    public Employee findEmployeeWithMaxSalaryByDepartment(Integer departmentId) {
         return employeeService.getEmployees().stream()
                 .filter(e -> e.getDepartment() == departmentId)
-                .max(Comparator.comparingInt(employee -> employee.getSalary()))
+                .max(Comparator.comparingInt(Employee::getSalary))
                 .orElseThrow(EmployeeNotFoundException::new);
     }
 
@@ -28,20 +28,20 @@ public class DepartmentServiceImpl implements DepartmentService{
     public Employee findMinSalaryByDepartment(Integer departmentId) {
         return employeeService.getEmployees().stream()
                 .filter(e -> e.getDepartment() == departmentId)
-                .min(Comparator.comparingInt(employee -> employee.getSalary()))
+                .min(Comparator.comparingInt(Employee::getSalary))
                 .orElseThrow(EmployeeNotFoundException::new);
     }
 
     @Override
     public Map<Integer, List<Employee>> printAll() {
 
-            return employeeService.getEmployees().stream()
-                    .collect(Collectors.groupingBy(Employee::getDepartment));
+        return employeeService.getEmployees().stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment));
     }
 
     @Override
     public List<Employee> printDepartment(Integer departmentId) {
-       return employeeService.getEmployees().stream()
+        return employeeService.getEmployees().stream()
                 .filter(e -> e.getDepartment() == departmentId)
                 .collect(Collectors.toList());
     }

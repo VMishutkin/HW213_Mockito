@@ -6,7 +6,7 @@ import java.util.Map;
 public interface DepartmentService {
 
 
-    Employee findMaxSalaryByDepartment(Integer departmentId);
+    Employee findEmployeeWithMaxSalaryByDepartment(Integer departmentId);
 
     Employee findMinSalaryByDepartment(Integer departmentId);
 
