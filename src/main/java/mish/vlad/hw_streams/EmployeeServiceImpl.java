@@ -8,6 +8,7 @@ import java.util.List;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
+    private final int EMPLOYEE_LIST_SIZE=5;
     private final List<Employee> employees;
 
 
@@ -28,6 +29,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         if (employees.contains(new Employee(firstName, lastName, salary, department))) {
             throw new EmployeeAlreadyAddedException();
+        }
+        if(employees.size()>EMPLOYEE_LIST_SIZE){
+            throw new EmployeeStorageIsFullException();
         }
 
         Employee newEmployee = new Employee(firstName, lastName, salary, department);
