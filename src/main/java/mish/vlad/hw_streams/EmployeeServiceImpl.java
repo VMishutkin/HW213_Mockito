@@ -30,7 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employees.contains(new Employee(firstName, lastName, salary, department))) {
             throw new EmployeeAlreadyAddedException();
         }
-        if(employees.size()>EMPLOYEE_LIST_SIZE){
+        if(employees.size()>=EMPLOYEE_LIST_SIZE){
             throw new EmployeeStorageIsFullException();
         }
 

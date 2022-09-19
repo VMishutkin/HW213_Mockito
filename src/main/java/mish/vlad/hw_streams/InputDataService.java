@@ -16,13 +16,14 @@ public class InputDataService {
 
     public static String validateSurname(String inputSurname) {
         String[] surnames = inputSurname.split("-");
-        for (String surname : surnames) {
-            if (StringUtils.isAlpha(surname)) {
-                surname = StringUtils.capitalize(surname.toLowerCase());
+        for (int i = 0; i<surnames.length; i++){
+            if (StringUtils.isAlpha(surnames[i])) {
+                surnames[i] = StringUtils.capitalize(surnames[i].toLowerCase());
             } else {
                 throw new InvalidInputException();
             }
         }
+
         return StringUtils.join(surnames, "-");
     }
 

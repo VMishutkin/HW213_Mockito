@@ -25,8 +25,8 @@ public class Employee {
     }
 
     public Employee(String firstname, String lastname, int salary, int department) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstname = InputDataService.validateName(firstname);
+        this.lastname = InputDataService.validateSurname(lastname);
         this.salary = salary;
         this.department = department;
     }
