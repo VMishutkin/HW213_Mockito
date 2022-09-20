@@ -8,7 +8,7 @@ public interface DepartmentService {
 
     Employee findEmployeeWithMaxSalaryByDepartment(Integer departmentId);
 
-    Employee findMinSalaryByDepartment(Integer departmentId);
+    Employee findEmployeeWithMinSalaryByDepartment(Integer departmentId);
 
     public Map<Integer, List<Employee>> printAll();
 

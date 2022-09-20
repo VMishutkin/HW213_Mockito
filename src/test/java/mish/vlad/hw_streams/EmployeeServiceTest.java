@@ -31,7 +31,7 @@ public class EmployeeServiceTest {
     }*/
 
     @BeforeEach
-    public void returnTestEmployees() {
+    private void returnTestEmployees() {
         employeesForTest= new ArrayList<>();
         employeesForTest.add(new Employee("Ivan", "PSoV", 12411, 2));
         employeesForTest.add(new Employee("PES", "KoshKIN", 23521, 1));
